@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <hr>
+    <form action="", method="post">
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.id.label }}<br>
+        {{ form.id }}<br>
+        {% for error in form.id.errors %}
+        <span style="color:red">{{ error }}</span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.season.label }}<br>
+        {{ form.season }}<br>
+        {% for error in form.season.errors %}
+        <span style="color:red">{{ error }}</span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.submit.label }}<br>
+        {{ form.submit }}<br>
+      </p>
+    </form>
+    {% if args %}
+      <p><span>Average Season Rating is </span><span>{{ args[0] }}</span></p>
+      <p>The highest rated Episode is number {{ args[1][2] }}, {{ args[1][1] }} with rating {{ args[1][0] }}</p>
+    {% endif %}
+  </body>
+</html>
